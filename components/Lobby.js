@@ -52,7 +52,12 @@ export default class Lobby extends React.Component {
           {name}
         </Text>
         <Text style={styles.waiting}>Waiting for players...</Text>
-        <Button onPress={this.handleBack.bind(this)} />
+        <Button
+          style={styles.backBtn}
+          title="Go Back to Main Page"
+          onPress={this.handleBack.bind(this)}
+        />
+        <Button title="game test" onPress={() => navigation.navigate('Game')} />
       </View>
     );
   }
@@ -64,5 +69,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     justifyContent: 'center',
     alignSelf: 'center'
+  },
+  backBtn: {
+    paddingBottom: 30
   }
 });
