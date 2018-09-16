@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, List } from 'react-native-elements';
 import firebase from 'firebase';
-import { Dropdown } from 'react-native-material-dropdown';
 
 export default class Lobby extends React.Component {
   static navigationOptions = {
@@ -34,20 +33,8 @@ export default class Lobby extends React.Component {
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam('name');
-    // firebase
-    //   .database()
-    //   .ref('/users/')
-    //   .once('value')
-    //   .then(data => {
-    //     let response = data.val();
-    //     let names = [];
-    //     response.forEach(player => {
-    //       names.push(player.name);
-    //     });
-    //     console.log(names);
-    //   });
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={{ fontSize: 40, textAlign: 'center' }} color="#000">
           {name}
         </Text>
@@ -71,6 +58,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   backBtn: {
+    paddingTop: 30,
     paddingBottom: 30
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
