@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default class Prelobby extends React.Component {
   static navigationOptions = {
-    title: 'PreLobby'
+    title: 'Main'
   };
   constructor() {
     super();
