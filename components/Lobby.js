@@ -5,33 +5,54 @@ import firebase from 'firebase';
 import { Dropdown } from 'react-native-material-dropdown';
 
 export default class Lobby extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      language: 'Javascript'
-    };
+  static navigationOptions = {
+    title: 'Lobby',
+    headerLeft: null
+  };
+  constructor(props) {
+    super(props);
+    this.handleBack.bind(this);
+    firebase
+      .database()
+      .ref('/startGame')
+      .on('child_changed', snapshot => {
+        if (snapshot.val) {
+          // navigate to game room and then use giphy
+        }
+      });
+  }
+  handleBack() {
+    const { navigation } = this.props;
+    const key = navigation.getParam('key');
+    firebase
+      .database()
+      .ref('users')
+      .child(key)
+      .remove();
+    navigation.navigate('Prelobby');
   }
   render() {
-    let data = [
-      {
-        value: 'Happy'
-      },
-      {
-        value: 'Sad'
-      },
-      {
-        value: 'Angry'
-      }
-    ];
     const { navigation } = this.props;
     const name = navigation.getParam('name');
+    // firebase
+    //   .database()
+    //   .ref('/users/')
+    //   .once('value')
+    //   .then(data => {
+    //     let response = data.val();
+    //     let names = [];
+    //     response.forEach(player => {
+    //       names.push(player.name);
+    //     });
+    //     console.log(names);
+    //   });
     return (
       <View>
         <Text style={{ fontSize: 40, textAlign: 'center' }} color="#000">
           {name}
         </Text>
         <Text style={styles.waiting}>Waiting for players...</Text>
-        <Dropdown label="Sentiment" data={data} />
+        <Button onPress={this.handleBack.bind(this)} />
       </View>
     );
   }

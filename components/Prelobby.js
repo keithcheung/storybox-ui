@@ -25,7 +25,15 @@ export default class Prelobby extends React.Component {
   }
   joinLobby() {
     const { name } = this.state;
-    this.props.navigation.navigate('Lobby', { name: name });
+    let key = '';
+    let firebaseRef = firebase
+      .database()
+      .ref('/users/')
+      .push({ name })
+      .then(data => {
+        key = data.key;
+        this.props.navigation.navigate('Lobby', { name: name, key: key });
+      });
   }
   render() {
     const { name } = this.state;
