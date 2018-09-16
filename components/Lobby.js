@@ -10,13 +10,14 @@ export default class Lobby extends React.Component {
   };
   constructor(props) {
     super(props);
+    const { navigation } = props;
     this.handleBack.bind(this);
     firebase
       .database()
       .ref('/startGame')
       .on('child_changed', snapshot => {
         if (snapshot.val) {
-          // navigate to game room and then use giphy
+          navigation.navigate('Game');
         }
       });
   }

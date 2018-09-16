@@ -44,10 +44,12 @@ export default class Game extends React.Component {
           onChangeText={giphySearch => this.setState({ giphySearch })}
         />
         <Button
+          style={styles.btn}
           title="SEND GIF"
           disabled={!giphySearch}
           onPress={this.getGiphy.bind(this)}
         />
+        <Button title="SEND SENTIMENT" style={styles.btn} />
       </View>
     );
   }
@@ -66,5 +68,8 @@ const styles = StyleSheet.create({
   web: {
     flex: 1,
     maxHeight: 600
+  },
+  btns: {
+    padding: 10
   }
 });
